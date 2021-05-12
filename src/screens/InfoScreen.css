@@ -1,0 +1,15 @@
+.infoScreen {
+    position: absolute;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.infoScreen_gradient {
+    width: 100%;
+    z-index: 1;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+}
+
