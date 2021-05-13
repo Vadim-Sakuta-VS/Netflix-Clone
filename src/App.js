@@ -47,7 +47,7 @@ function App() {
             </Route>
 
             {/* new */}
-            <Route path='/info'>
+            <Route path='/info/:id'>
               <InfoScreen />
             </Route>
             {/* new */}

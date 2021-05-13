@@ -1,15 +1,130 @@
 .infoScreen {
-    position: absolute;
-    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-height: 100vh;
+    width: 100%;
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
 }
 
-.infoScreen_gradient {
-    width: 100%;
+.infoScreen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
     z-index: 1;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.9);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 1));
 }
 
+.info-content {
+    max-width: 75%;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 80px 20px 20px 20px;
+    z-index: 1;
+    color: #fff;
+}
+
+.info-content__poster{
+    margin-bottom: 10px;
+}
+
+.info-content__poster img{
+    width: 100%;
+}
+
+.info-content__col:first-child {
+    flex-basis: 20%;
+}
+
+.info-content__col:last-child {
+    flex-basis: 5%;
+}
+
+.info-content__col:nth-child(2) {
+    max-width: 55%;
+    /*min-width: 400px;*/
+}
+
+.info-content__col:first-child {
+    margin-right: 70px;
+}
+
+.info-content__title {
+    font-size: 35px;
+    margin-bottom: 30px;
+}
+
+.info-content__table {
+    margin-top: 50px;
+}
+
+.info-content__table-row {
+    display: flex;
+}
+
+.info-content__table-title {
+    margin-bottom: 20px;
+}
+
+.info-content__table-row:not(:last-child) {
+    border-bottom: 1px solid rgba(83, 83, 83, 0.7);
+}
+
+.info-content__table-row-title {
+    color: rgba(83, 83, 83, 0.7);
+    font-weight: bold;
+    font-size: 20px;
+    flex-basis: 35%;
+}
+
+.info-content__table-row-title, .info-content__table-row-content {
+    display: flex;
+    align-items: center;
+}
+
+.info-content__table-row-content {
+    flex-basis: 65%;
+}
+
+.info-content__vote{
+    display: flex;
+    align-items: flex-end;
+    font-weight: bold;
+    padding-left: 20px;
+}
+
+.vote_average{
+    font-size: 25px;
+    line-height: 1.1;
+    color: #06ad06;
+}
+
+.vote_count{
+    color: rgba(149, 149, 149, 0.5);
+}
+
+@media (max-width: 850px) {
+    .info-content__col:first-child {
+        flex-basis: 40%;
+    }
+
+    .info-content__col:nth-child(2) {
+        order: 1;
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 725px) {
+    .info-content__table-row-content {
+        justify-content: flex-end;
+    }
+}

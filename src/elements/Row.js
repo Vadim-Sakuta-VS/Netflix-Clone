@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from '../axios';
-import "./Row.css";
-import Youtube from "react-youtube";
-//import movieTrailer from "movie-trailer";
+import './Row.css';
+import {Link} from 'react-router-dom';
 
-function Row({ title, fetchUrl, isLargeRow = false }) {
-    const baseImgUrl = "https://image.tmdb.org/t/p/original/";
+function Row({title, fetchUrl, isLargeRow = false}) {
+    const baseImgUrl = 'https://image.tmdb.org/t/p/original/';
     const [movies, setMovies] = useState([]);
-    const [trailerUrl, setTrailerUrl] = useState("");
+    const [trailerUrl, setTrailerUrl] = useState('');
 
     useEffect(() => {
         async function fetchData() {
@@ -15,13 +14,14 @@ function Row({ title, fetchUrl, isLargeRow = false }) {
             setMovies(request.data.results);
             return request;
         }
+
         fetchData();
     }, [fetchUrl]);
 
     //Trailers
     const handleClick = async (movie) => {
         if (trailerUrl) {
-            setTrailerUrl("");
+            setTrailerUrl('');
         } else {
             let trailerurl = await axios.get(
                 `/movie/${movie.id}/videos?api_key=fb34530271b349314af0de263d16ab5a`
@@ -30,16 +30,7 @@ function Row({ title, fetchUrl, isLargeRow = false }) {
         }
     };
 
-    // Options for react-youtube
-    const opts = {
-        height: "390",
-        width: "100%",
-        playerVars: {
-            autoplay: 1,
-        },
-    };
-
-    //console.table(movies);
+    console.log(movies);
 
     return (
         <div className="row">
@@ -50,18 +41,20 @@ function Row({ title, fetchUrl, isLargeRow = false }) {
                     (movie) =>
                         ((isLargeRow && movie.poster_path) ||
                             (!isLargeRow && movie.backdrop_path)) && (
-                            <img
-                                key={movie.id}
-                                onClick={() => handleClick(movie)}
-                                className={`row__poster ${isLargeRow && "row__posterLarge"}`}
-                                src={`${baseImgUrl}${isLargeRow ? movie.poster_path : movie.backdrop_path}`}
-                                alt={movie.name}
-                            />
+                            <Link to={`/info/${movie.id}`} className='row-poster__link'>
+                                <img
+                                    key={movie.id}
+                                    onClick={() => handleClick(movie)}
+                                    className="row__poster row__posterLarge"
+                                    src={`${baseImgUrl}${isLargeRow ? movie.poster_path : movie.backdrop_path}`}
+                                    alt={movie.name}
+                                />
+                            </Link>
                         )
                 )}
             </div>
 
-            {trailerUrl && <Youtube videoId={trailerUrl} opts={opts} />}
+            {/*{trailerUrl && <Youtube videoId={trailerUrl} opts={opts}/>}*/}
         </div>
     );
 

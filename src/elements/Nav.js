@@ -22,7 +22,7 @@ function Nav() {
     return (
         <div className={`nav ${show && "nav__black"}`}>
             {/* new */}
-            <button className="buttonTest" onClick={() => history.push("/info")}> MovieScreenfdsfdsfsdfsdfsdf</button>
+            {/*<button className="buttonTest" onClick={() => history.push("/info")}> MovieScreenfdsfdsfsdfsdfsdf</button>*/}
             {/* new */}
             <div className="nav__contents">
                 <img
